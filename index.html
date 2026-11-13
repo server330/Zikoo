@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>مفاجأة عيد ميلاد سعيد لـ ذكرى 🎁✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffd6e0 0%, #ffef9f 50%, #c8e7ff 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            overflow: hidden;
+            color: #4a2c40;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .window-box {
+            background: #fff9fb;
+            border: 3px solid #5c3a4d;
+            border-radius: 18px;
+            box-shadow: 8px 8px 0px #5c3a4d;
+            width: 100%;
+            max-width: 420px;
+            overflow: hidden;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .window-header {
+            background: #ffb3c6;
+            border-bottom: 3px solid #5c3a4d;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 900;
+            font-size: 0.95rem;
+        }
+
+        .window-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #5c3a4d;
+            background: #fff;
+        }
+        .dot.pink { background: #ff4d6d; }
+        .dot.yellow { background: #ffd166; }
+
+        .window-content {
+            padding: 30px 22px;
+            text-align: center;
+        }
+
+        .step { display: none; }
+        .step.active { display: block; }
+
+        .gift-box {
+            font-size: 85px;
+            cursor: pointer;
+            display: inline-block;
+            margin: 15px 0;
+            animation: shake 2s infinite;
+            transition: transform 0.2s;
+        }
+        .gift-box:active { transform: scale(0.9); }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            20% { transform: rotate(-10deg); }
+            40% { transform: rotate(10deg); }
+            60% { transform: rotate(-10deg); }
+            80% { transform: rotate(10deg); }
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border: 3px solid #5c3a4d;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px #5c3a4d;
+            transition: all 0.15s;
+        }
+        .btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 1px 1px 0px #5c3a4d;
+        }
+        .btn-yes { background: #b5e48c; color: #2b4c1a; }
+        .btn-no { background: #ff8fa3; color: #590d22; }
+
+        .error-popup {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffccd5;
+            border: 3px solid #800f2f;
+            border-radius: 14px;
+            box-shadow: 6px 6px 0px #800f2f;
+            width: 85%;
+            max-width: 320px;
+            z-index: 100;
+            display: none;
+            animation: popIn 0.3s ease;
+        }
+        .error-header {
+            background: #ff4d6d;
+            color: #fff;
+            padding: 6px 12px;
+            font-weight: 800;
+            border-bottom: 3px solid #800f2f;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .pin-display {
+            background: #fff;
+            border: 3px solid #5c3a4d;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 6px;
+            margin: 15px 0;
+            color: #ff4d6d;
+            min-height: 56px;
+            direction: ltr;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            direction: ltr;
+        }
+
+        .key {
+            background: #ffe5ec;
+            border: 2.5px solid #5c3a4d;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px #5c3a4d;
+        }
+        .key:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #5c3a4d;
+        }
+        .key.clear { background: #ffd166; }
+        .key.enter { background: #b5e48c; }
+
+        .scratch-container {
+            position: relative;
+            width: 260px;
+            height: 220px;
+            margin: 15px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid #5c3a4d;
+            box-shadow: 5px 5px 0px #5c3a4d;
+            background: #fff0f3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .secret-underneath {
+            text-align: center;
+            z-index: 1;
+        }
+        .secret-underneath h3 {
+            color: #ff4d6d;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        #scratchCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            cursor: crosshair;
+            touch-action: none;
+        }
+
+        .letter-paper {
+            background: #fffdf7;
+            border: 2px dashed #ff758f;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: right;
+            line-height: 1.9;
+            font-size: 1.02rem;
+            position: relative;
+        }
+        .ribbon {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            display: block;
+            text-align: center;
+        }
+        .highlight {
+            color: #ff4d6d;
+            font-weight: 900;
+        }
+
+        .confetti {
+            position: fixed;
+            font-size: 24px;
+            animation: fall 4s linear forwards;
+            z-index: 999;
+            pointer-events: none;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-popup" id="errorPopup">
+        <div class="error-header">
+            <span>⚠️ تنبيه سري</span>
+            <span style="cursor:pointer;" onclick="closeError()">✖</span>
+        </div>
+        <div style="padding: 18px; text-align: center; font-weight: 700;">
+            هذا الخيار غير مسموح اليوم! 😜<br>لازم تكملي اللعبة للنهاية!
+            <br>
+            <button class="btn btn-yes" style="margin-top: 12px; padding: 6px 20px;" onclick="closeError()">حسناً، موافقة ❤️</button>
+        </div>
+    </div>
+
+    <div class="window-box">
+        <div class="window-header">
+            <span>🎁 مفاجأة خاصة لـ ذكرى</span>
+            <div class="window-dots">
+                <div class="dot yellow"></div>
+                <div class="dot pink"></div>
+            </div>
+        </div>
+
+        <div class="window-content">
+            
+            <!-- المرحلة 1 -->
+            <div class="step active" id="step1">
+                <h2 style="font-size: 1.4rem; margin-bottom: 8px;">مفاجأة في طريقها إليكِ! ✨</h2>
+                <p style="color: #7a5268; font-weight: 600;">اضغطي على الهدية لفتح المغامرة...</p>
+                <div class="gift-box" onclick="nextStep(2)">🎁</div>
+                <p style="font-size: 0.9rem; color: #ff4d6d; font-weight: 800;">(اضغطي هنا للبدء)</p>
+            </div>
+
+            <!-- المرحلة 2 -->
+            <div class="step" id="step2">
+                <div style="font-size: 50px; margin-bottom: 10px;">🧸🎈</div>
+                <h2 style="font-size: 1.35rem; margin-bottom: 10px;">هل أنتِ مستعدة لاكتشاف المفاجأة؟</h2>
+                <p style="color: #7a5268; font-size: 0.95rem;">يجب أن تجتازي التحدي أولاً!</p>
+                <div class="btn-group">
+                    <button class="btn btn-yes" onclick="nextStep(3)">مستعدة جداً! 😍</button>
+                    <button class="btn btn-no" onclick="showError()">لا أود 🙈</button>
+                </div>
+            </div>
+
+            <!-- المرحلة 3 -->
+            <div class="step" id="step3">
+                <h2 style="font-size: 1.25rem;">أدخلي رمز الدخول السري 🔐</h2>
+                <p style="font-size: 0.85rem; color: #7a5268;">(اكتبي تاريخ ميلادك أو أي أرقام تفضلينها)</p>
+                <div class="pin-display" id="pinDisplay">----</div>
+                <div class="keypad">
+                    <button class="key" onclick="pressKey('1')">1</button>
+                    <button class="key" onclick="pressKey('2')">2</button>
+                    <button class="key" onclick="pressKey('3')">3</button>
+                    <button class="key" onclick="pressKey('4')">4</button>
+                    <button class="key" onclick="pressKey('5')">5</button>
+                    <button class="key" onclick="pressKey('6')">6</button>
+                    <button class="key" onclick="pressKey('7')">7</button>
+                    <button class="key" onclick="pressKey('8')">8</button>
+                    <button class="key" onclick="pressKey('9')">9</button>
+                    <button class="key clear" onclick="clearPin()">مسح</button>
+                    <button class="key" onclick="pressKey('0')">0</button>
+                    <button class="key enter" onclick="unlockPin()">فتح 🔓</button>
+                </div>
+            </div>
+
+            <!-- المرحلة 4 -->
+            <div class="step" id="step4">
+                <h2 style="font-size: 1.25rem;">بقي خطوة واحدة فقط... 🤫</h2>
+                <p style="font-size: 0.9rem; color: #7a5268;">امسحي طبقة القلب بإصبعكِ لرؤية الرسالة!</p>
+                
+                <div class="scratch-container">
+                    <div class="secret-underneath">
+                        <div style="font-size: 40px;">🎂🎉</div>
+                        <h3>أجمل وأسعد يوم<br>يوم ميلادكِ يا غالية!</h3>
+                        <button class="btn btn-yes" style="padding: 6px 16px; font-size: 0.9rem;" onclick="finishGame()">اقرئي رسالتكِ الآن 💌</button>
+                    </div>
+                    <canvas id="scratchCanvas" width="260" height="220"></canvas>
+                </div>
+            </div>
+
+            <!-- المرحلة 5 -->
+            <div class="step" id="step5">
+                <span class="ribbon">🎀🎂🎀</span>
+                <h2 style="color: #ff4d6d; font-size: 1.5rem; margin-bottom: 12px;">كل عام وأنتِ بخير يا ذكرى!</h2>
+                <div class="letter-paper">
+                    إلى أختي الصغرى وصديقتي الغالية <span class="highlight">ذكرى عمر نمر</span>،<br><br>
+                    أردت أن أعايدكِ اليوم بطريقة مميزة تشبه لُطف قلبكِ وجمال روحكِ. أتمنى لكِ عاماً جديداً مليئاً بالفرح، الأماني المحققة، والتوفيق الدائم في كل خطواتكِ.<br><br>
+                    دائماً أتمنى أن تبقي مبتسمة وسعيدة، وكل سنة وأنتِ أقرب إلى كل ما تتمنيه يا أطيب أخت في الدنيا ❤️✨
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let pin = "";
+
+        function nextStep(stepNumber) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + stepNumber).classList.add('active');
+            if (stepNumber === 4) {
+                initScratchCard();
+            }
+        }
+
+        function showError() {
+            document.getElementById('errorPopup').style.display = 'block';
+        }
+
+        function closeError() {
+            document.getElementById('errorPopup').style.display = 'none';
+        }
+
+        function pressKey(num) {
+            if (pin.length < 8) {
+                pin += num;
+                document.getElementById('pinDisplay').innerText = pin;
+            }
+        }
+
+        function clearPin() {
+            pin = "";
+            document.getElementById('pinDisplay').innerText = "----";
+        }
+
+        function unlockPin() {
+            if (pin.length >= 2) {
+                nextStep(4);
+            } else {
+                alert("أدخلي الرمز أولاً يا ذكرى! 😊");
+            }
+        }
+
+        function initScratchCard() {
+            const canvas = document.getElementById('scratchCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.fillStyle = '#ff8fa3';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 18px Cairo, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('❤️ امسحي هنا بإصبعكِ ❤️', canvas.width / 2, canvas.height / 2);
+
+            let isDrawing = false;
+
+            function getPos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return {
+                    x: clientX - rect.left,
+                    y: clientY - rect.top
+                };
+            }
+
+            function scratch(e) {
+                if (!isDrawing) return;
+                e.preventDefault();
+                const pos = getPos(e);
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, 24, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            canvas.addEventListener('mousedown', () => isDrawing = true);
+            canvas.addEventListener('mouseup', () => isDrawing = false);
+            canvas.addEventListener('mousemove', scratch);
+
+            canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
+            canvas.addEventListener('touchend', () => isDrawing = false);
+            canvas.addEventListener('touchmove', scratch);
+        }
+
+        function finishGame() {
+            nextStep(5);
+            launchConfetti();
+        }
+
+        function launchConfetti() {
+            const emojis = ['❤️', '🎂', '🎉', '✨', '💖', '🌸'];
+            for (let i = 0; i < 35; i++) {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.className = 'confetti';
+                    el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                    el.style.left = Math.random() * 100 + 'vw';
+                    el.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
+                    document.body.appendChild(el);
+                    setTimeout(() => el.remove(), 4500);
+                }, i * 120);
+            }
+        }
+    </script>
+</body>
+</html>
